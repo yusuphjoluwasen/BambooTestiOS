@@ -11,15 +11,14 @@ import RxSwift
 final class SearchDetailViewModel{
     
     var weather:WeatherDomain?
-    let weatherDataRx = PublishSubject<[WeatherData]>()
-    
+
     init(weather:WeatherDomain?){
         self.weather = weather
     }
     
     func createWeatherDataList(_ weather:WeatherDomain, _ tempType:Temp) -> [WeatherData]{
-        let mintemp = tempType == .celcius ? fahrenheitToC(f: weather.mintemp) : weather.mintemp.toString()
-        let maxtemp = tempType == .celcius ? fahrenheitToC(f: weather.maxtemp) : weather.maxtemp.toString()
+        let mintemp = tempType == .celcius ? fahrenheitToC(f: weather.mintemp) : toFahrenheit(f: weather.mintemp)
+        let maxtemp = tempType == .celcius ? fahrenheitToC(f: weather.maxtemp) : toFahrenheit(f: weather.maxtemp)
         return [
             WeatherData(title: "Min temperature", value: mintemp),
             WeatherData(title: "Max temperature", value: maxtemp),
@@ -34,6 +33,10 @@ final class SearchDetailViewModel{
     func fahrenheitToC(f:Double) -> String{
         let cel = (f - 32) * 5/9
         return "\(String(format: "%.2f", cel))°C"
+    }
+    
+    func toFahrenheit(f:Double) -> String{
+        return "\(String(format: "%.2f", f))°F"
     }
 }
 

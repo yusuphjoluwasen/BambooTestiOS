@@ -11,8 +11,7 @@ final class ChooseCityCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let this = UILabel()
-        this.setUpGenLabel(text: "", textColor: .tertiaryColor, font: .systemFont14Bold,
-                           numberOfLines: 3)
+        this.setUpGenLabel(text: "", font: .systemFont16Regular)
         return this
     }()
     
@@ -31,6 +30,8 @@ final class ChooseCityCell: UITableViewCell {
 extension ChooseCityCell{
     
     private func configureView(){
+        backgroundColor = .white
+        selectionStyle = .none
         accessoryType = .disclosureIndicator
     }
     

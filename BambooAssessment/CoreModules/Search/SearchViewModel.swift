@@ -17,7 +17,7 @@ final class SearchViewModel{
     }
     
     struct Output {
-        let tableData: Observable<WeatherDomain?>
+        let weatherData: Observable<WeatherDomain?>
     }
     
     private let bag = DisposeBag()
@@ -37,6 +37,6 @@ final class SearchViewModel{
                     .trackActivity(activityTracker)
             }
         
-        return Output(tableData: data)
+        return Output(weatherData: data)
     }
 }

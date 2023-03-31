@@ -11,13 +11,13 @@ final class SearchDetailCell: UITableViewCell {
     
     let label: UILabel = {
         let this = UILabel()
-        this.setUpGenLabel(text: "", textColor: .textColor, font: .systemFont16Regular)
+        this.setUpGenLabel(text: "", font: .systemFont16Regular)
         return this
     }()
     
     let value: UILabel = {
         let this = UILabel()
-        this.setUpGenLabel(text: "", textColor: .textColor, font: .systemFont16Regular)
+        this.setUpGenLabel(text: "",font: .systemFont16Regular)
         return this
     }()
     
@@ -36,6 +36,7 @@ final class SearchDetailCell: UITableViewCell {
 extension SearchDetailCell{
     
     private func configureView(){
+        backgroundColor = .white
         selectionStyle = .none
     }
     

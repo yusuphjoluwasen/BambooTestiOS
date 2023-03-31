@@ -31,8 +31,7 @@ final class WeatherSearchViewController:UIViewController{
     }
     
     func initialsetUp(){
-        navigationItem.title = "Welcome"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        setUpNavigationTitle("Welcome")
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
         contentView.tableView.sectionHeaderTopPadding = 0
@@ -42,11 +41,11 @@ final class WeatherSearchViewController:UIViewController{
         let cell1 = ChooseCityCellController()
         let cell2 = LocationCellController()
         let cell3 = SearchCityCellController()
-        cell3.action = { [weak self]  in
+        cell3.onsubmitbuttonclick = { [weak self]  in
             self?.fetchOnSelectOrClick(location: cell2.model, selectedCity: cell3.model[0].output)
         }
         
-        cell1.action = { [weak self] selected in
+        cell1.onselectprepopulated = { [weak self] selected in
             self?.fetchOnSelectOrClick(location: cell2.model, selectedCity: selected)
         }
         cells.append(cell1)
@@ -59,7 +58,7 @@ final class WeatherSearchViewController:UIViewController{
         
         let output = viewModel.fetch(input: input)
         
-        output.tableData
+        output.weatherData
             .asDriver(onErrorJustReturn: nil)
             .drive(onNext: { [weak self] weather in
                 self?.moveToNextPage(weather: weather)

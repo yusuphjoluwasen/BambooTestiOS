@@ -31,6 +31,7 @@ final class SearchCityCell: UITableViewCell {
 extension SearchCityCell{
     
     private func configureView(){
+        backgroundColor = .white
         separatorInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         contentView.isUserInteractionEnabled = false
     }

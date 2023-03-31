@@ -10,12 +10,6 @@ import UIKit
 
 final class WeatherSearchDetailView : UIView {
     
-    lazy var titleLabel: UILabel = {
-        let this = UILabel()
-        this.setUpGenLabel(text: "", textColor: .black, font: .systemFont34Bold,
-                           numberOfLines: 1)
-        return this
-    }()
     
     lazy var segmentControl:UISegmentedControl = {
         let this = UISegmentedControl(items: ["C","F"])
@@ -59,7 +53,7 @@ final class WeatherSearchDetailView : UIView {
     
     lazy var tableView:UITableView = {
         let this = UITableView()
-        this.backgroundColor = .clear
+        this.backgroundColor = .white
         this.showsVerticalScrollIndicator = false
         this.isScrollEnabled = false
         this.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
@@ -76,7 +70,6 @@ final class WeatherSearchDetailView : UIView {
     
     private func configureView() {
         backgroundColor = .white
-        addSubview(titleLabel)
         addSubview(segmentControl)
         addSubview(weatherImg)
         addSubview(weatherCondLabel)
@@ -89,14 +82,11 @@ final class WeatherSearchDetailView : UIView {
 extension WeatherSearchDetailView{
     func configureConstraints() {
             NSLayoutConstraint.activate([
-                titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-                titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat.size20),
-                
-                segmentControl.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+                segmentControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -CGFloat.size40),
                 segmentControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.size20),
                 segmentControl.widthAnchor.constraint(equalToConstant: 100),
                 
-                weatherImg.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: CGFloat.size20),
+                weatherImg.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: CGFloat.size20),
                 weatherImg.centerXAnchor.constraint(equalTo: centerXAnchor),
                 
                 weatherCondLabel.topAnchor.constraint(equalTo: weatherImg.bottomAnchor, constant: CGFloat.size5),
@@ -106,10 +96,10 @@ extension WeatherSearchDetailView{
                 tempLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
                 
                 detailLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: CGFloat.size20),
-                detailLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+                detailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: CGFloat.size20),
                 
                 tableView.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: CGFloat.size20),
-                tableView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+                tableView.leftAnchor.constraint(equalTo: detailLabel.leftAnchor),
                 tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.size20),
                 tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
             ])
